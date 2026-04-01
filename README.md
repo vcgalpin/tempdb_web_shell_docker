@@ -20,12 +20,17 @@ The image is available at https://hub.docker.com/repository/docker/vcgalpin/xps_
 
 To run this image, use
 ```
-docker run -d \
+docker run -it \
   --name tempdb_web_shell \
   -p 8080:8081 \
   -v tempdb_web_shell_pgdata:/opt/postgres-data \
   vcgalpin/xps_dcc_app:tempdb_web_shell_test
 ```
+and to restart it, use
+```
+docker start -ai tempdb_web_shell
+```
+**Note:** This image does not provide the functionality of `run-web-shell.sh` which is described below.
 
 ---
 
