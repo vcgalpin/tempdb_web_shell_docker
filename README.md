@@ -1,4 +1,3 @@
-```md
 # tempdb_web_shell
 
 This directory contains a shell-first Docker setup for a Links web application with PostgreSQL.
@@ -87,7 +86,7 @@ Then run:
 
 ```bash
 ./run-web-shell.sh
-```
+
 
 ---
 
