@@ -22,7 +22,7 @@ To run this image as a container, use
 ```
 docker run -it \
   --name tempdb_web_shell \
-  -p 8080:8081 \
+  -p 8081:8080 \
   -v tempdb_web_shell_pgdata:/opt/postgres-data \
   vcgalpin/xps_dcc_app:tempdb_web_shell_test
 ```
