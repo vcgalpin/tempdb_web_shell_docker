@@ -5,7 +5,7 @@ This directory contains a shell-first Docker setup for [Links temporal DB web ap
 The container provides the Links application code, PostgreSQL, `bash`, `git`, `psql`, `linx` and an interactive shell environment.
 The web app does **not** start automatically when you enter the container. Instead, you are dropped into a shell and can choose what to run.
 
-The container provides a link to the app at <http://localhost:8080> when the app is running.
+The container provides a link to the app at <http://localhost:8081> when the app is running.
 
 There are two different ways to run this container from an image.
 1. **Build the image** yourself on your own computer using the Dockerfile, 
