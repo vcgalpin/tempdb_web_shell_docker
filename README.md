@@ -16,8 +16,6 @@ There are two different ways to run this container from an image.
     + *or* use the following command
       ```
       docker build --no-cache \
-      --build-arg APP_REPO_URL="https://github.com/vcgalpin/xps_dcc_app" \
-      --build-arg APP_REPO_BRANCH="main" \
       -t tempdb_web_shell .
       ```
       followed by
