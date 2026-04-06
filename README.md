@@ -15,8 +15,7 @@ There are two different ways to run this container from an image.
       ```
     + *or* use the following command
       ```
-      docker build --no-cache \
-      -t tempdb_web_shell .
+      docker build --no-cache -t tempdb_web_shell .
       ```
       followed by
       ```
