@@ -2,7 +2,7 @@
 
 This directory contains a shell-first Docker setup for [Links temporal DB web application](https://github.com/vcgalpin/xps_dcc_app). It is intended for interactive use.
 
-The container provides the Links application code, PostgreSQL, `bash`, `psql`, `linx` and an interactive shell environment.
+The container provides the Links application code, PostgreSQL, `bash`, `git`, `psql`, `linx` and an interactive shell environment.
 The web app does **not** start automatically when you enter the container. Instead, you are dropped into a shell and can choose what to run.
 
 The container provides a link to the app at <http://localhost:8080> when the app is running.
@@ -40,7 +40,6 @@ There are two different ways to run this container from an image.
    
    (Note: This image does *not* provide the functionality of `run-web-shell.sh`. This functionality can only be accessed when building the image from the Dockerfile rather than just running the downloaded image as a container.)
 
----
 ## What the container does
 
 When the container starts, it:
@@ -85,8 +84,6 @@ psql -h /tmp -p 5432 -d linksdb -U linksuser -c '\dt'
 git status
 ```
 
----
-
 ### Ports
 
 The container is started with this mapping:
@@ -94,13 +91,9 @@ The container is started with this mapping:
 - host port `8081`
 - container port `8080`
 
-So if you start the web app inside the container, it should be reachable at:
+So if you start the web app inside the container, it should be reachable at <http://localhost:8081>
 
-- <http://localhost:8081>
-
----
-
-## Database persistence
+### Database persistence
 
 The PostgreSQL data is stored in the Docker volume:
 
@@ -114,23 +107,11 @@ This means:
 - rebuilding the image does not automatically reset the database
 - recreating the volume removes the existing database state
 
----
+## Running the bash script
 
---
-## What `run-web-shell.sh` does
+When you run `./run-web-shell.sh` the script can:
 
-When you run:
-
-```bash
-./run-web-shell.sh
-```
-
-the script can:
-
-1. optionally show the current local Docker status
-   - image
-   - container
-   - volume
+1. optionally show the current local Docker status of the image, the container and the data volume
 
 2. check GitHub for the latest version of the configured branch
 
@@ -158,9 +139,8 @@ the script can:
 
 8. start or attach to the shell container
 
----
 
-## First-time setup
+### First-time setup
 
 Make the scripts executable:
 
@@ -168,73 +148,45 @@ Make the scripts executable:
 chmod +x run-web-shell.sh show-status.sh show-change-status.sh show-commands.sh
 ```
 
-Then run:
+### Useful host-side commands
 
-```bash
-./run-web-shell.sh
-```
-
----
-
-
-## Useful host-side commands
-
-### Show running containers
+#### Show running containers
 
 ```bash
 docker ps
 ```
 
-### Open a shell in the running container
+#### Open a shell in the running container
 
 ```bash
 docker exec -it tempdb_web_shell bash
 ```
 
-### Show logs
+#### Show logs
 
 ```bash
 docker logs tempdb_web_shell
 ```
 
-### Stop the container
+#### Stop the container
 
 ```bash
 docker stop tempdb_web_shell
 ```
 
-### Remove the container
+#### Remove the container
 
 ```bash
 docker rm -f tempdb_web_shell
 ```
 
-### Remove the database volume
+#### Remove the database volume
 
 ```bash
 docker volume rm tempdb_web_shell_pgdata
 ```
 
----
-
-## Resetting everything
-
-To remove both the container and the database volume:
-
-```bash
-docker rm -f tempdb_web_shell
-docker volume rm tempdb_web_shell_pgdata
-```
-
-Then run again:
-
-```bash
-./run-web-shell.sh
-```
-
----
-
-## Configuration values in the script
+### Configuration values in the script
 
 The main values are currently set in `run-web-shell.sh`:
 
@@ -251,33 +203,17 @@ The main values are currently set in `run-web-shell.sh`:
 
 If you need to change behaviour, those are the first places to look.
 
----
-
 ## Notes
 
 ### Linux user
-The container runs as:
+The container runs as `linksuser`
 
-```text
-linksuser
-```
+### PostgreSQL user
+The DB user is `linksuser`
 
 ### Shell
-The interactive shell is:
-
-```text
-bash
-```
+The interactive shell is `bash`
 
 ### Links executable
-Use:
+Use `linx`, not `links`
 
-```bash
-linx
-```
-
-not `links`.
-
----
-
-```
